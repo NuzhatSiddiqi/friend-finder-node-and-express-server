@@ -2,15 +2,15 @@
 var friends = require('../data/friends.js');
 
 //Routes
-module.exports = function(app) {
+module.exports = function (app) {
 
     // API GET Requests
-    app.get('/api/friends', function(req, res) {
+    app.get('/api/friends', function (req, res) {
         res.json(friends);
     });
 
     // API POST Requests
-    app.post('/api/friends', function(req, res) {
+    app.post('/api/friends', function (req, res) {
 
         //Comparing user with their best friend match 
         var totalDifference = 0;
@@ -25,10 +25,18 @@ module.exports = function(app) {
         var userData = req.body;
         var userName = userData.name;
         var userScores = userData.scores;
+
+        // *** ask TA or teacher about .map when I have a chance.
+
         // Converting the users score to a number (Instead of string)
-        var b = userScores.map(function(item) {
-            return parseInt(item, 10);
-        });
+        // var b = userScores.map(function(item) {
+        //     return parseInt(item, 10);
+        // });
+
+        var b = [];
+        for (var i = 0; i < userScores; i++) {
+            b += parseInt(userScores[i])
+        }
         userData = {
             "name": req.body.name,
             "photo": req.body.photo,
